@@ -3,7 +3,7 @@
 Source code for **Q2 – Latency-Aware Task Scheduling and Load Balancing in Fog Computing**
 (healthcare IoT monitoring system).
 
-Author: R Ananyaa Sri, B.Tech CSE IoT-B (Reg. No. 23011102069)
+Author: Pretham Kumar K, B.Tech CSE IoT-B (Reg. No. 23011102067)
 
 ## Contents
 
