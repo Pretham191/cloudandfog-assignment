@@ -1,0 +1,24 @@
+digraph F {
+  rankdir=TB; nodesep=0.3; ranksep=0.32;
+  graph [fontname="Helvetica", bgcolor="white", pad=0.15];
+  node  [fontname="Helvetica", fontsize=9.5, shape=box, style="rounded,filled", fillcolor="#f4f4f2", color="#52514e"];
+  edge  [fontname="Helvetica", fontsize=8.5, color="#52514e", arrowsize=0.6];
+  a [label="Task T arrives at gateway\n(MI, size, deadline D, priority p)", fillcolor="#e8f2fd"];
+  b [label="Query monitor: U_i, queue backlog, BW, link delay"];
+  c [label="For every node i ∈ Fog ∪ {Cloud}:\nECT_i = max(Tx_i, W_i(p) + B_i(p)) + MI/MIPS_i\nE_i = P_i·exec + e_tx·size"];
+  d [label="p < 3 and min fog exec time > B_max ?", shape=diamond, fillcolor="#fff7f2"];
+  e [label="ECT_cloud ≤ D ?", shape=diamond, fillcolor="#fff7f2"];
+  f [label="Send to CLOUD", fillcolor="#e6f6f0"];
+  g [label="F = { i : ECT_i ≤ D }"];
+  h [label="p < 3 ? drop nodes with U_i ≥ θ\n(keep F if all are hot)"];
+  i [label="F empty ?", shape=diamond, fillcolor="#fff7f2"];
+  j [label="Best effort:\nargmin ECT_i", fillcolor="#fde8e8"];
+  k [label="Pick argmin J_i =\nw1·ECT_i/ECTmax + w2·U_i + w3·E_i/Emax", fillcolor="#e6f6f0"];
+  l [label="Insert into node's priority queue\n(level p, EDF inside level)", fillcolor="#e8f2fd"];
+  a -> b -> c -> d;
+  d -> e [label=" yes"]; d -> g [label=" no"];
+  e -> f [label=" yes"]; e -> g [label=" no"];
+  g -> h -> i;
+  i -> j [label=" yes"]; i -> k [label=" no"];
+  f -> l; j -> l; k -> l;
+}
